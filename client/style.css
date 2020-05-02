@@ -110,6 +110,7 @@ form button {
   padding: 5px;
 }
 
+/* DESKTOPS AND TABLETS*/
 @media (min-width: 550px) {
   #chat {
     width: 550px;
