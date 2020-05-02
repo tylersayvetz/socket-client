@@ -1,17 +1,20 @@
-console.log(window.innerWidth)
 
-window.addEventListener('resize', () => {
-  console.log('window width', window.innerWidth)
-})
 let name = '';
 let timeLastOwnTyping = new Date().getTime();
-console.log('time at load', timeLastOwnTyping)
+// console.log('time at load', timeLastOwnTyping)
 
 $(function () {
   const socket = io('http://socket.tylersayvetz.com')
 
   $('#input').submit(function (e) {
     e.preventDefault()
+
+    // if ($('#messages > li').children().length === 0) {
+    //   seedChat();
+    // }
+
+    scrollToBottom();
+
     if ($('#message').val() !== '') {
       const data = {
         name: name,
@@ -24,28 +27,24 @@ $(function () {
   })
 
   $('#changeName').on('click', () => {
-    console.log("got here")
     getUserName();
   })
 
   socket.on('chat-message', function (data) {
-    // console.log('received chat message:', data)
-    $('#messages').append(messageTemplate(data, name))
-    $('#messages').scrollTop($('#messages').prop('scrollHeight'));
+    appendMessage(data, false);
   })
 
   socket.on('get-name', function (data) {
-    console.log('got a name prompt')
+    // console.log('got a name prompt')
     $('#messages').append($('<li>').text(data))
     newChatter();
   })
 
   socket.on('server-message', function (data) {
-    $('#messages').append($('<li>').text(`<Server Message> . ${data.payload}`))
+    appendMessage(data , true);
   })
 
   socket.on('typing-message', function (data) {
-    console.log(data, ' is typing..')
     $('#status').text(`${data} is typing...`)
     typingTimeout();
   })
@@ -56,6 +55,7 @@ $(function () {
     }, 1000)
   }
 
+  //handle a new person entering the room
   async function newChatter() {
     while (name === '') {
       setName();
@@ -66,13 +66,31 @@ $(function () {
     socket.emit('new-chatter', data)
   }
 
-  async function getUserName() {
+  function getUserName() {
     setName();
   }
 
   function setName() {
     name = window.prompt('What is your name?:', 'Enter Name')
     $('#message').attr('placeholder', name);
+  }
+
+  function atBottom() {
+    return window.scrollY + window.innerHeight === $(document).height();
+  }
+
+  function scrollToBottom() {
+    window.scroll(0, $(document).height())
+  }
+
+  function appendMessage(data, server) {
+    if (atBottom()) {
+      $('#messages').append(messageTemplate(data, name, server))
+      // console.log("scrolling down")
+      scrollToBottom();
+    } else {
+      $('#messages').append(messageTemplate(data, name, server))
+    }
   }
 
   $('#input').on('keydown', (e) => {
