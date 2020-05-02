@@ -1,3 +1,8 @@
+console.log(window.innerWidth)
+
+window.addEventListener('resize', () => {
+  console.log('window width', window.innerWidth)
+})
 let name = '';
 let timeLastOwnTyping = new Date().getTime();
 console.log('time at load', timeLastOwnTyping)
@@ -18,17 +23,21 @@ $(function () {
     }
   })
 
+  $('#changeName').on('click', () => {
+    console.log("got here")
+    getUserName();
+  })
+
   socket.on('chat-message', function (data) {
-    let time = new Date().toLocaleTimeString()
-    console.log('received chat message:', data)
-    $('#messages').append($('<li>').text(`${data.name} (${time}) ${data.payload}`))
+    // console.log('received chat message:', data)
+    $('#messages').append(messageTemplate(data, name))
     $('#messages').scrollTop($('#messages').prop('scrollHeight'));
   })
 
   socket.on('get-name', function (data) {
     console.log('got a name prompt')
     $('#messages').append($('<li>').text(data))
-    getName();
+    newChatter();
   })
 
   socket.on('server-message', function (data) {
@@ -47,14 +56,23 @@ $(function () {
     }, 1000)
   }
 
-  async function getName() {
+  async function newChatter() {
     while (name === '') {
-      name = window.prompt('What is your name?:', 'Enter Name')
+      setName();
     }
     const data = {
       name: name,
     }
     socket.emit('new-chatter', data)
+  }
+
+  async function getUserName() {
+    setName();
+  }
+
+  function setName() {
+    name = window.prompt('What is your name?:', 'Enter Name')
+    $('#message').attr('placeholder', name);
   }
 
   $('#input').on('keydown', (e) => {

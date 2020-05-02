@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   <title>Socket.io Chat Room</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,17 +11,24 @@
 <body>
   <div id="chat">
 
-    <ul id="messages"></ul>
+    <div class="messages-wrapper">
+
+      <ul id="messages"></ul>
+    </div>
     <div id="status"></div>
     <form id="input">
       <input type="text" id="message" autocomplete="off" autofocus />
       <button>Send</button>
     </form>
+    <div class="chat-tools">
+      <button id="changeName" class="change-name">Change Name</button>
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous">
     </script>
   <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+  <script src="util.js"></script>
   <script src="client.js"></script>
 </body>
 
