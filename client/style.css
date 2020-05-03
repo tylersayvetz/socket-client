@@ -78,9 +78,10 @@ form button {
 
 #messages li {
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin: 5px;
   word-wrap: break-word;
+  max-width: 85%;
 }
 #messages li  {
   background: rgb(209, 209, 209);
@@ -89,7 +90,6 @@ form button {
 
 #messages li.ownMessage {
   background: rgb(152, 207, 245);
-  text-align: right;
   align-self: flex-end;
 }
 
