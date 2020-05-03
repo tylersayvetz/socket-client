@@ -94,10 +94,11 @@ form button {
 }
 
 #status {
+  position: absolute;
+  left: 0px;
   font-size: 10px;
   color: rgb(21, 33, 61);
   height: 18px;
-  width: 100%;
 }
 
 .change-name {
@@ -105,9 +106,15 @@ form button {
 }
 
 .tools {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 5px;
+  max-height: 28px;
+}
+
+.tool {
+  margin-inline-start: 5px;
 }
 
 .link-preview {
@@ -126,6 +133,10 @@ form button {
 
 .link-preview .favicon {
   align-self: flex-start;
+}
+
+.num-users {
+  height: 100%;
 }
 
 /* DESKTOPS AND TABLETS*/

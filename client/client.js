@@ -4,7 +4,7 @@ let timeLastOwnTyping = new Date().getTime();
 // console.log('time at load', timeLastOwnTyping)
 
 $(function () {
-  const socket = io('http://socket.tylersayvetz.com')
+  const socket = io('socket.tylersayvetz.com')
 
   $('#input').submit(function (e) {
     e.preventDefault()
@@ -28,6 +28,10 @@ $(function () {
 
   $('#changeName').on('click', () => {
     getUserName();
+  })
+
+  socket.on('update-num-users', function(number) {
+    $('#numUsers').text(`Active users: ${number}`)
   })
 
   socket.on('chat-message', function (data) {
