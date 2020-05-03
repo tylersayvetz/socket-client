@@ -83,12 +83,12 @@ form button {
   word-wrap: break-word;
 }
 #messages li  {
-  background: rgb(243, 243, 243);
+  background: rgb(209, 209, 209);
   align-self: flex-start;
 }
 
 #messages li.ownMessage {
-  background: rgb(225, 243, 255);
+  background: rgb(152, 207, 245);
   text-align: right;
   align-self: flex-end;
 }
@@ -108,6 +108,24 @@ form button {
   display: flex;
   justify-content: space-between;
   padding: 5px;
+}
+
+.link-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 10px;
+  padding: 5px;
+  margin: 5px;
+  min-height: 50px;
+  width: 100%;
+  border: thin rgb(173, 171, 188) solid;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.link-preview .favicon {
+  align-self: flex-start;
 }
 
 /* DESKTOPS AND TABLETS*/

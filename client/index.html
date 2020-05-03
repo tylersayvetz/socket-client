@@ -2,13 +2,14 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, user-scalable=no"/>
   <title>Socket.io Chat Room</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
+  <h1>heading!</h1>
   <div id="chat">
 
     <div class="messages-wrapper">
@@ -21,15 +22,14 @@
         <button id="changeName" class="change-name">Name</button>
       </div>
       <form id="input">
-        <input type="text" id="message" autocomplete="off" autofocus />
+        <input type="text" id="message" autocomplete="off" />
         <button>Send</button>
       </form>
 
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous">
-    </script>
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
   <script src="util.js"></script>
   <script src="client.js"></script>

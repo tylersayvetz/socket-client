@@ -85,11 +85,11 @@ $(function () {
 
   function appendMessage(data, server) {
     if (atBottom()) {
-      $('#messages').append(messageTemplate(data, name, server))
-      // console.log("scrolling down")
+      $('#messages').append(messageTemplate(data, server))
+
       scrollToBottom();
     } else {
-      $('#messages').append(messageTemplate(data, name, server))
+      $('#messages').append(messageTemplate(data, server))
     }
   }
 
